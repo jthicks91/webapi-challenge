@@ -13,7 +13,6 @@ function logger(req, res, next) {
 }
 
 server.use(logger);
-server.use(express.json());
 
 const projectRoute = require("./routes/projectRoute");
 const actionRoute = require("./routes/actionRoute");
