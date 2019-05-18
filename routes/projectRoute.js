@@ -8,7 +8,7 @@ router.get("/", (req, res) => {
     .then(projects => res.status(200).json(projects))
     .catch(err =>
       res.status(500).json({
-        error: "Information Cannot Be Retrieved From Server: We Suck."
+        error: "This information could not be retrieved from the server"
       })
     );
 });
@@ -20,11 +20,14 @@ router.get("/:id", async (req, res) => {
       ? res.status(200).json(project)
       : res
           .status(404)
-          .json({ message: "No Project with that ID can be found" });
+          .json({
+            message:
+              "Sorry. No Project with that ID can be found on this server"
+          });
   } catch (err) {
     res.status(500).json({
       error:
-        "The Project information could not be retrieved, we are beating our developers until this is fixed"
+        "The Project information could not be retrieved, we apologize for being incompetent"
     });
   }
 });
@@ -36,7 +39,7 @@ router.post("/", async (req, res) => {
     res.status(201).json(project);
   } catch (err) {
     res.status(500).json({
-      error: "Could not add that project, it probably wasn't important anyway"
+      error: "Meh. Couldn't add that project."
     });
   }
 });
@@ -47,12 +50,15 @@ router.get("/:id/actions", async (req, res) => {
     actions
       ? res.status(200).json(actions)
       : res.status(404).json({
-          message: "Actions for that project number could not be found"
+          message:
+            "Actions for that project number could not be found bud. Sorry."
         });
   } catch (err) {
     res
       .status(500)
-      .json({ error: "The actions information could not be retrieved." });
+      .json({
+        error: "The actions information could not be retrieved properly."
+      });
   }
 });
 
@@ -64,11 +70,10 @@ router.delete("/:id", async (req, res) => {
           .status(200)
           .json({ message: "The project was deleted.", id: `${req.params.id}` })
       : res.status(404).json({
-          message:
-            "a user with that ID could not be found. Call the Police and warn his next of kin"
+          message: "a user with that ID could not be found. How unfortuante."
         });
   } catch (err) {
-    res.status(500).json({ error: "could not complete the request" });
+    res.status(500).json({ error: " this request could not be completed" });
   }
 });
 
